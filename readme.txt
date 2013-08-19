@@ -51,6 +51,10 @@ Sample, contact available at http://jalby.org/wordpress/
 
 	[folderslider folder="wp-content/upload/MyPictures"]
 
+== Screenshots ==
+1. Folder Slider Settings
+2. Folder Slider in a post
+
 == Changelog ==
 
 = 0.9 [2013-08-19] =
