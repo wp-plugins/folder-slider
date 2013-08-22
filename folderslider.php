@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 0.92
+Version: 0.93
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -160,7 +160,7 @@ class folderslider{
 				$slider_code .= " title=\"$title\"";
 				$slider_code .= " alt=\"$title\"";
 			} else {
-				$slider_code .= ' alt="' . $pictures[ $idx ] . '"' ;
+				$slider_code .= ' alt="' . $idx . $pictures[ $idx ] . '"' ;
 			}
 			$slider_code .= " /></li>\n";
 		}

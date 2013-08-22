@@ -17,3 +17,17 @@ ul.bxslider li {
 .bx-wrapper .bx-caption {
 	background: rgba(80, 80, 80, 0.5);
 }
+
+.bx-wrapper .bx-pager.bx-default-pager a {
+	background: #666;
+}
+
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active {
+	background: #000;
+}
+
+/* Safari trick */
+.bx-clone {
+	display: none;
+}

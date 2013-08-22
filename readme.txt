@@ -3,7 +3,7 @@ Contributors: vjalby
 Tags: slider, slideshow, folder, bxslider
 Requires at least: 3.5
 Tested up to: 3.6
-Stable tag: 0.92
+Stable tag: 0.93
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,6 +56,9 @@ Sample, contact available at http://jalby.org/wordpress/
 2. Folder Slider in a post
 
 == Changelog ==
+
+= 0.93 [2013-08-22] =
+* Safari bug fixed
 
 = 0.92 [2013-08-20] =
 * HTML tag bug fixed
