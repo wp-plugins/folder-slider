@@ -8,18 +8,22 @@
 
 ul.bxslider {
 	margin:0;
+	padding:0;
 }
 
 ul.bxslider li {
 	margin:0;
+	padding:0;
 }
 
 .widget-area .textwidget ul.bxslider {
 	margin:0;
+	padding:0;
 }
 
 .widget-area .textwidget ul.bxslider li {
 	margin:0;
+	padding:0;
 }
 
 .bx-wrapper .bx-caption {
