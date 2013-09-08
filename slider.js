@@ -1,5 +1,5 @@
 var i = 1;
-while ( eval( 'FSDparam' + i ) ) {
+while ( eval( 'typeof FSDparam' + i ) != 'undefined' ) {
 	fsd_bxslider( '.bxslider' + i,  eval( 'FSDparam' + i ) );
 	i++;
 }
