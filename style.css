@@ -14,6 +14,14 @@ ul.bxslider li {
 	margin:0;
 }
 
+.widget-area .textwidget ul.bxslider {
+	margin:0;
+}
+
+.widget-area .textwidget ul.bxslider li {
+	margin:0;
+}
+
 .bx-wrapper .bx-caption {
 	background: rgba(80, 80, 80, 0.5);
 }

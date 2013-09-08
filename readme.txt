@@ -57,6 +57,9 @@ Sample, contact available at http://jalby.org/wordpress/
 
 == Changelog ==
 
+= 0.95 [2013-09-08] =
+* Support for several sliders (with different settings) on the same page
+
 = 0.94 [2013-08-22] =
 * Safari bug fixed
 

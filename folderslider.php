@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 0.94
+Version: 0.95
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -33,6 +33,8 @@ new folderslider();
 
 class folderslider{
 
+	private $slider_no = 0;
+	
 	function folderslider() {		
 		add_action( 'admin_menu', array( $this, 'fsd_menu' ) );	
 		add_action( 'admin_init', array( $this, 'fsd_settings_init' ) );
@@ -68,10 +70,10 @@ class folderslider{
 		}
 	}
 
-	function fsd_scripts( $param ) {
+	function fsd_scripts( $param, $num ) {
 		wp_enqueue_script( 'bxslider-script', plugins_url( 'jquery.bxslider/jquery.bxslider.min.js', __FILE__ ), array( 'jquery' ) );
 		wp_enqueue_script( 'fsd_slider-script', plugins_url( 'slider.js', __FILE__ ), array( 'jquery' ) );
-		wp_localize_script( 'fsd_slider-script', 'FSDparam', $param );
+		wp_localize_script( 'fsd_slider-script', 'FSDparam' . $num , $param );
 	}
 
 	function file_array( $directory ) { // List all JPG & PNG files in $directory
@@ -129,15 +131,18 @@ class folderslider{
 		if ( 0 == $NoP ) {
 			return '<p style="color:red;"><strong>Folder Slider Error: </strong>No picture available inside '. $folder . '</p>';
 		}
+		
+		++$this->slider_no;
+		
 		// Paramaters
 		$param = array( 'width'=>$width, 'controls'=>($controls == 'true'), 'auto'=>($autostart == 'true'), 'playcontrol'=>($playcontrol == 'true'), 'speed'=>($speed*1000), 'captions'=>($captions != 'none'), 'pager'=>($pager == 'true'), 'mode'=>$mode );
-		$this->fsd_scripts($param);
+		$this->fsd_scripts($param, $this->slider_no);
 
 		$picture_size = "";
 		if ( $width > 0)  $picture_size = " width=\"$width\"";
 		if ( $height > 0)  $picture_size .= " height=\"$height\"";
 
-		$slider_code = '<ul class="bxslider">';
+		$slider_code = '<ul class="bxslider bxslider' . $this->slider_no . '">';
 		
 		for ( $idx = 0 ; $idx < $NoP ; $idx++ ) {
 			switch ( $captions ) {

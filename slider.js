@@ -1,16 +1,22 @@
-jQuery(document).ready(function(){
-  jQuery('.bxslider').bxSlider({
-	mode: FSDparam.mode,
-	slideWidth: FSDparam.width,
-	adaptiveHeight: true,
-	controls: FSDparam.controls,
-	auto: FSDparam.auto,
-	autoControls: FSDparam.playcontrol,
-	autoControlsCombine: true,
-	pause: FSDparam.speed,
-	captions: FSDparam.captions,
-	pager: FSDparam.pager,
-  });
-});
+var i = 1;
+while ( eval( 'FSDparam' + i ) ) {
+	fsd_bxslider( '.bxslider' + i,  eval( 'FSDparam' + i ) );
+	i++;
+}
 
-
+function fsd_bxslider ( selector, Param ) {
+	jQuery(document).ready(function(){
+	  jQuery( selector ).bxSlider({
+		mode: Param.mode,
+		slideWidth: Param.width,
+		adaptiveHeight: true,
+		controls: Param.controls,
+		auto: Param.auto,
+		autoControls: Param.playcontrol,
+		autoControlsCombine: true,
+		pause: Param.speed,
+		captions: Param.captions,
+		pager: Param.pager,
+	  });
+	});
+}
