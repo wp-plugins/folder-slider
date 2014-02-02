@@ -2,8 +2,8 @@
 Contributors: vjalby
 Tags: slider, slideshow, folder, bxslider
 Requires at least: 3.5
-Tested up to: 3.6
-Stable tag: 0.94
+Tested up to: 3.8.1
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ Sample, contact available at http://jalby.org/wordpress/
 
 == Changelog ==
 
-= 0.95 [2013-09-08] =
+= 1.0 [2014-02-02] =
 * Support for several sliders (with different settings) on the same page
 
 = 0.94 [2013-08-22] =
