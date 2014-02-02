@@ -16,7 +16,7 @@ function fsd_bxslider ( selector, Param ) {
 		autoControlsCombine: true,
 		pause: Param.speed,
 		captions: Param.captions,
-		pager: Param.pager,
+		pager: Param.pager
 	  });
 	});
 }
