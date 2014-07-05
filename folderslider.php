@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 1.0
+Version: 1.1b1
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -62,12 +62,8 @@ class folderslider{
 	}
 	
 	function fsd_styles() {
-		$fsd_options = get_option( 'FolderSlider' );
 		wp_enqueue_style( 'bxslider-style', plugins_url( 'jquery.bxslider/jquery.bxslider.css', __FILE__ ) );
 		wp_enqueue_style( 'fsd-style', plugins_url( 'style.css', __FILE__ ) );
-		if ( ! $fsd_options['shadow'] ) {
-			wp_enqueue_style( 'fsd-noshadow-style', plugins_url( 'noshadow.css', __FILE__ ) );
-		}
 	}
 
 	function fsd_scripts( $param, $num ) {
@@ -135,14 +131,19 @@ class folderslider{
 		++$this->slider_no;
 		
 		// Paramaters
-		$param = array( 'width'=>$width, 'controls'=>($controls == 'true'), 'auto'=>($autostart == 'true'), 'playcontrol'=>($playcontrol == 'true'), 'speed'=>($speed*1000), 'captions'=>($captions != 'none'), 'pager'=>($pager == 'true'), 'mode'=>$mode );
+		$param = array( 'width'=>$width, 'controls'=>($controls == 'true'), 'auto'=>($autostart == 'true'), 'playcontrol'=>($playcontrol == 'true'), 'speed'=>intval($speed*1000), 'captions'=>($captions != 'none'), 'pager'=>($pager == 'true'), 'mode'=>$mode );
 		$this->fsd_scripts($param, $this->slider_no);
 
 		$picture_size = "";
 		if ( $width > 0)  $picture_size = " width=\"$width\"";
 		if ( $height > 0)  $picture_size .= " height=\"$height\"";
 
-		$slider_code = '<ul class="bxslider bxslider' . $this->slider_no . '">';
+		if ( ! $shadow ) {
+			$slider_code = '<div class="bx-wrapper-noshadow">'. "\n";
+		} else {
+			$slider_code = '';
+		}
+		$slider_code .= '<ul class="bxslider bxslider' . $this->slider_no . '">';
 		
 		for ( $idx = 0 ; $idx < $NoP ; $idx++ ) {
 			switch ( $captions ) {
@@ -171,6 +172,8 @@ class folderslider{
 		}
 		
 		$slider_code .= "</ul>\n";
+		
+		if ( ! $shadow ) { $slider_code .= "</div>\n"; }
 		
 		return $slider_code;
 	}
@@ -213,7 +216,7 @@ class folderslider{
 		$input['height'] = intval( $input['height'] );
 		if ( ! in_array( $input['mode'], array( 'horizontal','vertical','fade' ) ) ) $input['mode'] = 'horizontal';
 		if ( ! in_array( $input['captions'], array( 'none','filename','filenamewithoutextension','smartfilename' ) ) ) $input['subtitle'] = 'none';
-		$input['speed']          = intval( $input['speed'] );
+		$input['speed']          = floatval( $input['speed'] );
 		if ( 0 == $input['speed'] ) $input['speed'] = 5;
 		$input['controls'] = ( 1 == $input['controls'] );
 		$input['playcontrol'] = ( 1 == $input['playcontrol'] );

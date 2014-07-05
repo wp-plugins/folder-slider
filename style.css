@@ -39,6 +39,22 @@ ul.bxslider li {
 	background: #000;
 }
 
+.bx-wrapper .bx-pager.bx-default-pager a {
+	margin: 0 3px;
+}
+
+.bx-wrapper .bx-viewport {
+	background-color: inherit;
+}
+
+.bx-wrapper-noshadow .bx-wrapper .bx-viewport {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
+	left: 0px;
+}
+
 /* Safari trick */
 .bx-clone {
 	display: none;

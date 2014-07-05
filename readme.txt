@@ -2,7 +2,7 @@
 Contributors: vjalby
 Tags: slider, slideshow, folder, bxslider
 Requires at least: 3.5
-Tested up to: 3.8.1
+Tested up to: 3.9.1
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -28,16 +28,16 @@ An Options page allow to set the default paramaters of the sliders :
 * Play/Pause Button (playcontrol): true or false
 * Start Slider Automatically (autostart): true or false
 * Pager (pager): true or false
-* CSS/Show box with shadow: global option to enable/disable the box around the slider
+* CSS/Show box with shadow (shadow): global option to enable/disable the box around the slider
 
 Default slider width is 100% unless the attribute width is set to a non-zero value. The height is calculate for each picture (to keep ratio) unless the attribute height is set to a non-zero value.
 
 Most of theses settings can be overridden using the corresponding shortcode attribute:
 
 	[folderslider folder="wp-content/upload/MyPictures" width=500 
-		mode=fade speed=2 captions=smartfilename controls=false]
+		mode=fade speed=2.5 captions=smartfilename controls=false shadow=true]
  
-This plugin uses bxSlider 4.1.1 by Steven Wanderski - http://bxslider.com 
+This plugin uses bxSlider 4.1.2 by Steven Wanderski - http://bxslider.com 
 
 Sample, contact available at http://jalby.org/wordpress/
 
@@ -56,6 +56,11 @@ Sample, contact available at http://jalby.org/wordpress/
 2. Folder Slider in a post
 
 == Changelog ==
+
+= 1.1b1 [2014-07-05] =
+* Update bxSlider to 4.1.2
+* Speed (in seconds) may be decimal (e.g., 1.5)
+* Shadow option can be set per slider. 
 
 = 1.0 [2014-02-02] =
 * Support for several sliders (with different settings) on the same page
