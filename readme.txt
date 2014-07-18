@@ -28,7 +28,7 @@ An Options page allow to set the default paramaters of the sliders :
 * Play/Pause Button (playcontrol): true or false
 * Start Slider Automatically (autostart): true or false
 * Pager (pager): true or false
-* CSS/Show box with shadow (shadow): global option to enable/disable the box around the slider
+* CSS/Show box with shadow (shadow): true or false. Show the box around the slider
 
 Default slider width is 100% unless the attribute width is set to a non-zero value. The height is calculate for each picture (to keep ratio) unless the attribute height is set to a non-zero value.
 
@@ -56,6 +56,9 @@ Sample, contact available at http://jalby.org/wordpress/
 2. Folder Slider in a post
 
 == Changelog ==
+
+= 1.1b2 [2014-07-18] =
+* When width option is set to 0, slider's width is set to the width of first picture (instead of 100 %)
 
 = 1.1b1 [2014-07-05] =
 * Update bxSlider to 4.1.2

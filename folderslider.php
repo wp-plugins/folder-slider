@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 1.1b1
+Version: 1.1b2
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -128,9 +128,16 @@ class folderslider{
 			return '<p style="color:red;"><strong>Folder Slider Error: </strong>No picture available inside '. $folder . '</p>';
 		}
 		
+		//Calculate Slider's Width from first picture
+		if ( $width == 0 ) {
+			$image = wp_get_image_editor( $folder . '/' . $pictures[ 0 ] );
+			if ( ! is_wp_error( $image ) ) {
+				$size = $image->get_size();
+				$width = $size['width'];
+			}
+		}
+		// Set JS parameters
 		++$this->slider_no;
-		
-		// Paramaters
 		$param = array( 'width'=>$width, 'controls'=>($controls == 'true'), 'auto'=>($autostart == 'true'), 'playcontrol'=>($playcontrol == 'true'), 'speed'=>intval($speed*1000), 'captions'=>($captions != 'none'), 'pager'=>($pager == 'true'), 'mode'=>$mode );
 		$this->fsd_scripts($param, $this->slider_no);
 
