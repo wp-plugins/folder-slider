@@ -7,6 +7,7 @@
  *
  * Released under the MIT license - http://opensource.org/licenses/MIT
  */
+/* Modified for Folder Slideshow */
 
 ;(function($){
 
@@ -213,7 +214,7 @@
 				maxWidth: getViewportMaxWidth()
 			});
 			// make modification to the wrapper (.bx-wrapper)
-			if(!slider.settings.pager) {
+			if(!slider.settings.pager && !slider.settings.controls) { // Modified for Folder Slideshow
 				slider.viewport.parent().css({
 				margin: '0 auto 0px'
 				});

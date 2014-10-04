@@ -22,13 +22,13 @@ An Options page allow to set the default paramaters of the sliders :
 
 * Transition Mode (mode): horizontal, vertical, fade
 * Caption Format (captions): none, filename, filenamewithoutextension, smartfilename (filename with underscores, extension and front numbers removed)
+* CSS (css): change the frame around slider: 'noborder','shadow','black-border','white-border','gray-border'
 * Width and Height of the slider (width and height)
 * Speed (speed):  time between slides in seconds
 * Previous/Next Buttons (controls): true or false
 * Play/Pause Button (playcontrol): true or false
 * Start Slider Automatically (autostart): true or false
 * Pager (pager): true or false
-* CSS/Show box with shadow (shadow): true or false. Show the box around the slider
 
 Default slider width is 100% unless the attribute width is set to a non-zero value. The height is calculate for each picture (to keep ratio) unless the attribute height is set to a non-zero value.
 
@@ -56,6 +56,10 @@ Sample, contact available at http://jalby.org/wordpress/
 2. Folder Slider in a post
 
 == Changelog ==
+
+= 1.1b3 [2014-10-04] =
+* New CSS setting/option replacing CSS/Show box with shadow. 
+* Misc changes
 
 = 1.1b2 [2014-07-18] =
 * When width option is set to 0, slider's width is set to the width of first picture (instead of 100 %)

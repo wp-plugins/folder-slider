@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 1.1b2
+Version: 1.1b3
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -112,7 +112,7 @@ class folderslider{
 			'speed' => $fsd_options['speed'],
 			'captions' => $fsd_options['captions'],
 			'pager' => $fsd_options['pager'],
-			'shadow' => $fsd_options['shadow'],
+			'css'=> $fsd_options['css'],
 		), $atts ) );
 
 		$folder = rtrim( $folder, '/' ); // Remove trailing / from path
@@ -145,11 +145,24 @@ class folderslider{
 		if ( $width > 0)  $picture_size = " width=\"$width\"";
 		if ( $height > 0)  $picture_size .= " height=\"$height\"";
 
-		if ( ! $shadow ) {
-			$slider_code = '<div class="bx-wrapper-noshadow">'. "\n";
-		} else {
-			$slider_code = '';
+		switch ( $css ) {
+			case 'noborder':
+				$slider_code = '<div class="bx-wrapper-noborder">'. "\n";
+			break;
+			case 'shadow':
+				$slider_code = '<div>'. "\n";
+			break;
+			case 'black-border':
+				$slider_code = '<div class="bx-wrapper-border-black">'. "\n";
+			break;
+			case 'white-border':
+				$slider_code = '<div class="bx-wrapper-border-white">'. "\n";
+			break;
+			case 'gray-border':
+				$slider_code = '<div class="bx-wrapper-border-gray">'. "\n";
+			break;	
 		}
+		
 		$slider_code .= '<ul class="bxslider bxslider' . $this->slider_no . '">';
 		
 		for ( $idx = 0 ; $idx < $NoP ; $idx++ ) {
@@ -178,9 +191,7 @@ class folderslider{
 			$slider_code .= " /></li>\n";
 		}
 		
-		$slider_code .= "</ul>\n";
-		
-		if ( ! $shadow ) { $slider_code .= "</div>\n"; }
+		$slider_code .= "</ul>\n</div>\n";
 		
 		return $slider_code;
 	}
@@ -198,7 +209,7 @@ class folderslider{
 			'speed' => 3,
 			'captions' => 'none',
 			'pager' => true,
-			'shadow' => true,
+			'css' => 'shadow',
 		);
 		return $defaults;
 	}
@@ -222,14 +233,14 @@ class folderslider{
 		$input['width']  = intval( $input['width'] );
 		$input['height'] = intval( $input['height'] );
 		if ( ! in_array( $input['mode'], array( 'horizontal','vertical','fade' ) ) ) $input['mode'] = 'horizontal';
-		if ( ! in_array( $input['captions'], array( 'none','filename','filenamewithoutextension','smartfilename' ) ) ) $input['subtitle'] = 'none';
+		if ( ! in_array( $input['captions'], array( 'none','filename','filenamewithoutextension','smartfilename' ) ) ) $input['captions'] = 'none';
+		if ( ! in_array( $input['css'], array( 'noborder','shadow','black-border','white-border','gray-border' ) ) ) $input['css'] = 'noborder';
 		$input['speed']          = floatval( $input['speed'] );
 		if ( 0 == $input['speed'] ) $input['speed'] = 5;
 		$input['controls'] = ( 1 == $input['controls'] );
 		$input['playcontrol'] = ( 1 == $input['playcontrol'] );
 		$input['autostart'] = ( 1 == $input['autostart'] );
 		$input['pager'] = ( 1 == $input['pager'] );
-		$input['shadow'] = ( 1 == $input['shadow'] );
 		return $input;
 	}
 
@@ -285,6 +296,29 @@ class folderslider{
 				echo '>' . __('Smart Filename', 'folderslider') . "</option>\n";	
 		echo "</select>\n";
 		echo "</td>\n</tr>\n";
+		
+		
+		// CSS
+		echo '<tr valign="top">' . "\n";
+		echo '<th scope="row"><label for="css">' . __( 'CSS', 'folderslider' ) . '</label></th>' . "\n";
+		echo '<td><select name="FolderSlider[css]" id="FolderSlider[css]">' . "\n";		
+			echo "\t" .	'<option value="noborder"';
+				if ( 'noborder' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __( 'No border', 'folderslider') . "</option>\n";
+			echo "\t" .	'<option value="shadow"';
+				if ( 'shadow' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __('Border with shadow', 'folderslider') . "</option>\n";
+			echo "\t" .	'<option value="black-border"';
+				if ( 'black-border' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __('Back border', 'folderslider') . "</option>\n";	
+			echo "\t" .	'<option value="white-border"';
+				if ( 'white-border' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __('White border', 'folderslider') . "</option>\n";	
+			echo "\t" .	'<option value="gray-border"';
+				if ( 'gray-border' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __('Gray border', 'folderslider') . "</option>\n";	
+		echo "</select>\n";
+		echo "</td>\n</tr>\n";		
 
 		$this->fsd_option_field( 'width', __( 'Width', 'folderslider' ) , ' px ' . __( '(0 = auto)', 'folderslider' ) );
 		$this->fsd_option_field( 'height', __( 'Height', 'folderslider' ), ' px ' . __( '(0 = auto)', 'folderslider' ) );
@@ -310,16 +344,6 @@ class folderslider{
 			echo '<input name="FolderSlider[pager]" type="checkbox" id="FolderSlider[pager]" value="1"';
 			if ( $fsd_options['pager'] ) echo ' checked="checked"';
 			echo '> ' . __('Show Pager', 'folderslider') . "</label>\n";
-		echo "</fieldset>\n";
-		echo "</td>\n</tr>\n";
-
-		echo '<tr valign="top">' . "\n";
-		echo '<th scope="row">' . __( 'CSS', 'folderslider' ) . "</th>\n";
-		echo "<td><fieldset>\n";
-		echo '<label for="shadow">';
-			echo '<input name="FolderSlider[shadow]" type="checkbox" id="FolderSlider[shadow]" value="1"';
-			if ( $fsd_options['shadow'] ) echo ' checked="checked"';
-			echo '> ' . __( 'Show box with shadow', 'folderslider') . "</label><br />\n";
 		echo "</fieldset>\n";
 		echo "</td>\n</tr>\n";		
 		
