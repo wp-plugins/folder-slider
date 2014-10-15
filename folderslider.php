@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 1.1b3
+Version: 1.1b4
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -50,6 +50,15 @@ class folderslider{
 		$fsd_options = get_option( 'FolderSlider' );
 		if ( empty( $fsd_options ) ) {
 			update_option( 'FolderSlider', $this->fsd_settings_default() );
+		}
+		if ( ! isset( $fsd_options['css'] ) ) {
+			$fsd_options['css'] = 'shadow';
+			if ( isset( $fsd_options['shadow'] ) ) {
+				if ( !$fsd_options['shadow'] ) {
+					$fsd_options['css'] = 'noborder';
+				}
+			}
+			update_option( 'FolderSlider', $fsd_options );
 		}
 	}
 	
@@ -149,8 +158,8 @@ class folderslider{
 			case 'noborder':
 				$slider_code = '<div class="bx-wrapper-noborder">'. "\n";
 			break;
-			case 'shadow':
-				$slider_code = '<div>'. "\n";
+			case 'shadownoborder':
+				$slider_code = '<div class="bx-wrapper-shadow">'. "\n";
 			break;
 			case 'black-border':
 				$slider_code = '<div class="bx-wrapper-border-black">'. "\n";
@@ -160,7 +169,11 @@ class folderslider{
 			break;
 			case 'gray-border':
 				$slider_code = '<div class="bx-wrapper-border-gray">'. "\n";
-			break;	
+			break;
+			case 'shadow':
+			default:
+				$slider_code = '<div>'. "\n";
+			break;
 		}
 		
 		$slider_code .= '<ul class="bxslider bxslider' . $this->slider_no . '">';
@@ -234,7 +247,7 @@ class folderslider{
 		$input['height'] = intval( $input['height'] );
 		if ( ! in_array( $input['mode'], array( 'horizontal','vertical','fade' ) ) ) $input['mode'] = 'horizontal';
 		if ( ! in_array( $input['captions'], array( 'none','filename','filenamewithoutextension','smartfilename' ) ) ) $input['captions'] = 'none';
-		if ( ! in_array( $input['css'], array( 'noborder','shadow','black-border','white-border','gray-border' ) ) ) $input['css'] = 'noborder';
+		if ( ! in_array( $input['css'], array( 'noborder','shadow','shadownoborder','black-border','white-border','gray-border' ) ) ) $input['css'] = 'noborder';
 		$input['speed']          = floatval( $input['speed'] );
 		if ( 0 == $input['speed'] ) $input['speed'] = 5;
 		$input['controls'] = ( 1 == $input['controls'] );
@@ -308,6 +321,9 @@ class folderslider{
 			echo "\t" .	'<option value="shadow"';
 				if ( 'shadow' == $fsd_options['css'] ) echo ' selected="selected"';
 				echo '>' . __('Border with shadow', 'folderslider') . "</option>\n";
+			echo "\t" .	'<option value="shadownoborder"';
+				if ( 'shadownoborder' == $fsd_options['css'] ) echo ' selected="selected"';
+				echo '>' . __('Shadow without border', 'folderslider') . "</option>\n";
 			echo "\t" .	'<option value="black-border"';
 				if ( 'black-border' == $fsd_options['css'] ) echo ' selected="selected"';
 				echo '>' . __('Back border', 'folderslider') . "</option>\n";	

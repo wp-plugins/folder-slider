@@ -22,7 +22,7 @@ An Options page allow to set the default paramaters of the sliders :
 
 * Transition Mode (mode): horizontal, vertical, fade
 * Caption Format (captions): none, filename, filenamewithoutextension, smartfilename (filename with underscores, extension and front numbers removed)
-* CSS (css): change the frame around slider: 'noborder','shadow','black-border','white-border','gray-border'
+* CSS (css): change the frame around slider: 'noborder', 'shadow', 'shadownoborder', 'black-border', 'white-border', 'gray-border'
 * Width and Height of the slider (width and height)
 * Speed (speed):  time between slides in seconds
 * Previous/Next Buttons (controls): true or false
@@ -35,7 +35,7 @@ Default slider width is 100% unless the attribute width is set to a non-zero val
 Most of theses settings can be overridden using the corresponding shortcode attribute:
 
 	[folderslider folder="wp-content/upload/MyPictures" width=500 
-		mode=fade speed=2.5 captions=smartfilename controls=false shadow=true]
+		mode=fade speed=2.5 captions=smartfilename controls=false css="gray-border"]
  
 This plugin uses bxSlider 4.1.2 by Steven Wanderski - http://bxslider.com 
 
@@ -56,6 +56,9 @@ Sample, contact available at http://jalby.org/wordpress/
 2. Folder Slider in a post
 
 == Changelog ==
+
+= 1.1b4 [2014-10-15] =
+* New CSS style : CSS without border
 
 = 1.1b3 [2014-10-04] =
 * New CSS setting/option replacing CSS/Show box with shadow. 

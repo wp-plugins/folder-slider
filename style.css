@@ -1,5 +1,6 @@
 .bx-wrapper {
 	box-sizing:content-box;
+	margin: 0 auto 40px;
 }
 
 .bx-wrapper div {
@@ -80,11 +81,21 @@ ul.bxslider li {
 	display: block;
 }
 
+.bx-wrapper-shadow .bx-wrapper .bx-viewport {
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 7px #333;
+	border: 0px;
+	left: 0px;
+}
+
+
 /* Theme trick */
 
 #content .bx-wrapper img {
 	max-width: 100%;
 	box-shadow: none;
+	border-radius: 0px;
 	display: block;
 }
 
