@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Folder Slider
-Version: 1.1b4
+Version: 1.1b5
 Plugin URI: http://www.jalby.org/wordpress/
 Author: Vincent Jalby
 Author URI: http://www.jalby.org
@@ -171,6 +171,8 @@ class folderslider{
 				$slider_code = '<div class="bx-wrapper-border-gray">'. "\n";
 			break;
 			case 'shadow':
+				$slider_code = '<div class="bx-wrapper-border-shadow">'. "\n";
+			break;
 			default:
 				$slider_code = '<div>'. "\n";
 			break;

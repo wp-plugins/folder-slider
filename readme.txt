@@ -57,6 +57,10 @@ Sample, contact available at http://jalby.org/wordpress/
 
 == Changelog ==
 
+= 1.1b5 [2015-04-11] =
+* Update bxSlider to 4.2.2
+* Fix CSS
+
 = 1.1b4 [2014-10-15] =
 * New CSS style : CSS without border
 
